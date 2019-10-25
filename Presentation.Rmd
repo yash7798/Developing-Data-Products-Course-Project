@@ -1,0 +1,67 @@
+---
+title: "Developing Data Products - Course Project"
+author: "Yash Jain"
+date: "25th October 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+data(diamonds)
+```
+
+## Introduction
+
+Have you ever wondered how diamonds are priced beyond the number of carats(or weight)? Price also depends on the diamond's cut, color, and clarity.
+
+- Cut: quality of the diamond from best to worst (Ideal, Premium, Very Good, Good, Fair)
+- Color: best(D) to worst(J)
+- Clarity: measures how clear the diamond is from best to worst (IF, VVS2, VVS1, VS2, VS1, SI2, SI1, I1)
+
+## Steps involved in the working of the App
+
+This shiny app will predict diamond price based on your input of these factors.
+
+- Essentially for a given input of cut, color and clarity all the data points corresponding to them are extracted from the data set "diamonds"
+- Thereafter a model is trained with Price as output and Carat as input for the subsetted data. 
+- Once the Model is trained user can give carat of diamond as input for which the predicted price will be displayed. A demonstration has been given in later slides.
+
+## Documentation
+
+Here is a summary of the "diamonds" dataset found in the ggplot2 R package. As you can see, the factors were measured in over 50,000 diamonds 
+```{r,echo=TRUE,warning=FALSE,message=FALSE}
+summary(diamonds[,c(1:4,7)])
+```
+
+## Summary plot of diamond data with each of the variables plotted against each other
+```{r,echo=FALSE,warning=FALSE,message=FALSE }
+plot(diamonds[,c(1:4,7)])
+```
+
+## A simple Demonstration of the App
+
+- We subset data for cut = "Very Good", color = " F" and clarity = "IF".
+```{r,echo=TRUE,message=FALSE,warning=FALSE, cache=TRUE}
+diamond_subset <-subset(diamonds, cut == "Very Good" & color == "F" 
+                        & clarity == "IF")
+```
+
+- We then train this sub-dataset for Price ~ Carat
+```{r,echo=TRUE,warning=FALSE,message=FALSE,cache=TRUE}
+fit <- lm(price~carat,data = diamond_subset)
+```
+
+- We next predict the price of diamond using the trained model for a carat value of 3.4
+```{r,echo=TRUE,warning=FALSE,message=FALSE,cache=TRUE}
+predict(fit,data.frame(carat=3.4))
+```
+
+## Links
+
+The Shiny app and source code can be reached at:
+
+- **shiny app**: https://yash-jain.shinyapps.io/Project_App/
+- **source code**: https://github.com/yash7798/Developing-Data-Products-Course-Project
+
+
