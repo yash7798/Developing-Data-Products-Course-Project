@@ -1,5 +1,5 @@
-# Week 4 course project includes a shiny app to determine diamond price based on factors such as carat, cut, color, and clarity.
+# Week 4 course project includes a shiny app and a pitch presentation to determine diamond price based on factors such as carat, cut, color, and clarity.
 
-https://yash-jain.shinyapps.io/Project_App/
+1. Shiny app: https://yash-jain.shinyapps.io/Project_App/
 
-Also included is a pitch presentation for the app 
+2. Pitch presentation for the app: http://rpubs.com/yash_jain/542917 
